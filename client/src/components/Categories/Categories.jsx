@@ -42,7 +42,7 @@ const Categories = () => {
                 </div>
                 <div className="col">
                     <div className="row">
-                    <img src="https://images.fineartamerica.com/public/images/overview/overviewBeach004.jpg" alt="" />
+                    <img src="https://images.fineartamerica.com/public/images/overview/overviewBeach003.jpg" alt="" />
         <button>
                 <Link className='link' to={`/product/1`}>Winter</Link>
             </button>
@@ -50,7 +50,7 @@ const Categories = () => {
                 </div>
            </div>
         <div className='row'>
-        <img src="https://images.fineartamerica.com/public/images/overview/overviewBeach004.jpg" alt="" />
+        <img src="https://images.fineartamerica.com/public/images/overview/overviewGalaxyCase001.jpg" alt="" />
         <button>
                 <Link className='link' to={`/product/1`}>Summer</Link>
             </button>
