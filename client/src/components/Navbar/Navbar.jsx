@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
@@ -7,22 +7,27 @@ import {Link} from "react-router-dom";
 import PersonIcon from '@mui/icons-material/Person';
 import './Navbar.scss'
 import '../../App.css'
+import Cart from '../Cart/Cart';
 const Navbar = () => {
+
+
+   const [open,setOpen] = useState(false);
+
   return (
     <div className="navbar">
         <div className="wrapper">
         <div className="left">
             <div className="item">
-             <img src="img/en.png" alt="" />
+             <img src="/img/en.png" alt="" />
             </div>
              <div className="item">
                 <span> USA <KeyboardArrowDownIcon/></span>
              </div>
              <div className="item">
-                <Link className='link'>Women</Link>
+                <Link className='link' to='/product/1'>Women</Link>
              </div>
              <div className="item">
-                <Link className='link'>Men</Link>
+                <Link className='link' to='/product/1'>Men</Link>
               </div>
              <div className="item">
                 <Link className='link' to='/products/1'>Children</Link>
@@ -50,16 +55,16 @@ const Navbar = () => {
                 <SearchIcon/>
                 <PersonIcon/>
                 <FavoriteOutlinedIcon/>
-                <div className="cartIcon">
-                    <ShoppingCartOutlinedIcon/>
+                <div className="cartIcon" onClick={() => setOpen(!open)}>
+                    <ShoppingCartOutlinedIcon />
                     <span>0</span>
                 </div>
-
-        </div>
-
-
         </div>
         </div>
+        </div>
+        
+        {open && <Cart/>}
+         
     </div>
   )
 }

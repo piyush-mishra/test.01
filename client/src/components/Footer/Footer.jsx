@@ -36,7 +36,7 @@ const Footer = () => {
            <span className='copyright'>CopyRight </span>
         </div>
         <div className="right">
-          <img src="img/payment.png" alt="" />
+          <img src="/img/payment.png" alt="" />
         </div>
       </div>
      </div>

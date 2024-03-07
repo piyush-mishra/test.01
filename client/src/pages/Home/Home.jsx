@@ -6,7 +6,6 @@ import Categories from '../../components/Categories/Categories'
 const Home = () => {
   return (
     <>
-     <div>Home</div>
      <Slider/>
      <FeaturedProduct type={`featured`}/>
      <Categories/>
