@@ -2,9 +2,6 @@ import './App.css';
 import React from "react";
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
   createBrowserRouter,
   RouterProvider, Outlet
 } from "react-router-dom";
