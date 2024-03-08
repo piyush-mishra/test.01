@@ -3,7 +3,8 @@ import './Product.scss'
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import BalanceIcon from "@mui/icons-material/Balance";
-
+import {add} from '../../components/redux/cart/cartSlice';
+import {useDispatch} from 'react-redux'
 
 const Product = () => {
 
@@ -14,6 +15,15 @@ const Product = () => {
 const [mainimage,setMainImage] = useState(0);
 
  const [quantity,setQuantity] = useState(1);
+
+ const dispatch =  useDispatch();
+
+ const handleAdd = () => {
+    console.log('Add');
+    dispatch(add({id:1,name:'Piyush'}))
+    //Add Product in Cart.
+    //Dispatch Action will be handled by reducer.
+ }
 
   return (
     <>
@@ -36,7 +46,7 @@ const [mainimage,setMainImage] = useState(0);
           {quantity}
           <button onClick={()=> setQuantity(quantity => quantity+1)}>+</button>
         </div>
-        <div className="add">
+        <div className="add" onClick={() => handleAdd()}>
           <AddShoppingCartIcon/> ADD To CART
         </div>
         <div className="link">

@@ -18,6 +18,7 @@ const nextSlide = () => {
 
 
  const data = [
+    "https://venia.magento.com/media/catalog/category/venia-hero1.jpg?auto=webp&format=pjpg&quality=85",
     "https://burst.shopifycdn.com/photos/business-pug-working-on-laptop.jpg?width=1850&format=pjpg&exif=0&iptc=0/stock-photos/@matthew_henry?utm_campaign=photo_credit&utm_content=High+Res+Business+Pug+Working+On+Laptop+Picture+%E2%80%94+Free+Images&utm_medium=referral&utm_source=credit",
     "https://burst.shopifycdn.com/photos/black-and-white-photo-of-a-cat-laying-in-the-pavement.jpg?width=1850&format=pjpg&exif=0&iptc=0",
     "https://burst.shopifycdn.com/photos/photo-of-a-desk-and-white-corner-seating-area.jpg?width=1850&format=pjpg&exif=0&iptc=0"
@@ -31,6 +32,7 @@ console.log(currentSlide);
               <img src={data[0]} alt="" />
               <img src={data[1]} alt="" />
               <img src={data[2]} alt="" />
+              {/* <img src={data[3]} alt="" /> */}
              
     </div>
     <div className="icons">

@@ -1,29 +1,11 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react'
+import React from 'react'
 import Cards from '../Cards/Cards';
-import axios from 'axios'
 import './FeaturedProduct.scss';
 import { DUMMY_DATA } from '../../dummyData/dummyData';
+import useFetch from '../../hooks/useFetch';
 
 const FeaturedProduct = ({type}) => {
-
-
- 
-   const [data, setData] = useState([]);
-   
-   useLayoutEffect(()=> {
-     const fetchData = async () => {
-      try {
-        
-         const res = await axios.get('https://fakestoreapi.com/products');
-         setData(res.data);
-      }catch(error){
-          console.error(error)
-      }
-     }
-     fetchData();
-   },[])
-
-   console.log(data);
+   const {data,loading,error} = useFetch('https://fakestoreapi.com/products');
   return (
     <div className="featuredproduct">
         <div className="top">
@@ -38,8 +20,7 @@ const FeaturedProduct = ({type}) => {
     </div>
   )
 }
-
-export default FeaturedProduct
+export default FeaturedProduct;
 
 export const CARDS_DATA = [
   {

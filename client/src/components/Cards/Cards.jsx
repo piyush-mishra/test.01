@@ -11,7 +11,7 @@ const Cards = ({ item }) => {
     <Link className='link' to={`/product/${item.id}`}>
     <div className='card'>
       <div className="image">
-          <span>New Season</span>
+         {item.isNew && <span>New Season</span>} 
           <img src={item.image} alt=""  className='mainimage'/>
           <img src={item.secondImg} alt="" className='secondimage'/>
       </div>

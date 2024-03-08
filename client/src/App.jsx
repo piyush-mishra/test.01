@@ -10,7 +10,7 @@ import Product from './pages/Product/Product';
 import Category from './pages/Products/Category';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
-
+import {Provider} from 'react-redux';
 
 const Layout = () =>{
   return (
@@ -44,8 +44,7 @@ const router = createBrowserRouter([
       element:<Product/>
     }
   ]
-},
-,
+}
 ,{
   path:"/about",
   element:<span>About</span>

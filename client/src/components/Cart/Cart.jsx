@@ -2,8 +2,13 @@ import React from 'react'
 
 import './Cart.scss';
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
+import { useDispatch, useSelector } from 'react-redux';
+import { remove } from '../redux/cart/cartSlice';
 
 function Cart() {
+
+     const item = useSelector((state)=> state.cart);
+     const dispatch =  useDispatch();
 
     const CARDS_DATA = [
         {
@@ -26,6 +31,10 @@ function Cart() {
         price:5512
       }      
       ];
+
+      const deleteItem = () => {
+          dispatch(remove({id:1}))
+      }
   return (
     <div className='cart'>
       <h1>Product in your Cart</h1>
@@ -37,7 +46,7 @@ function Cart() {
                 <p>{item.desc}</p>
                 <div className="price"> 1 X ${item.price}</div>
              </div>
-             <DeleteOutlinedIcon className='delete'/>
+             <DeleteOutlinedIcon className='delete' onClick={()=>deleteItem()}></DeleteOutlinedIcon>
             </div>
         ))}
         <div className="total">
