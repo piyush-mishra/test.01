@@ -7,8 +7,8 @@ import Displaylocations from '../../components/Displaylocations'
 const Home = () => {
   return (
     <>
-     <Slider/>
      <Displaylocations/>
+     <Slider/>
      <FeaturedProduct type={`featured`}/>
      <Categories/>
      <FeaturedProduct type={`trending`}/>

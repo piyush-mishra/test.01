@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useQuery, gql } from '@apollo/client';
+
 export default function Displaylocations() {
 
 const GET_LOCATIONS = gql`
@@ -19,18 +20,23 @@ const GET_LOCATIONS = gql`
 
 `;
 
-const { loading, error, data } = useQuery(GET_LOCATIONS);
+
+
+const { loading, error, data} = useQuery(GET_LOCATIONS);
+
+
+
 if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
 
+  //console.log(data);
   return (
     <div>
         Displaylocations
-        {data.locations.map(({id,name,photo}) => 
-            <div key={id}>
-                <h3>{name}</h3>
-                <img width="400" height="250" alt="location-reference" src={`${photo}`} />
-            </div>
+        {data?.products?.items?.map(({name,uid}) => (
+            <h2>{name}</h2>
+
+        )
         )}
     </div>
     

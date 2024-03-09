@@ -7,9 +7,10 @@ import store from './components/redux/cart/cartStore';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
 
+
 const client = new ApolloClient({
-  uri: 'http://localhost:6002/graphql',
   cache: new InMemoryCache(),
+  uri:"http://localhost:4503/api/graphql"
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
