@@ -11,6 +11,7 @@ import Category from './pages/Products/Category';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import {Provider} from 'react-redux';
+import VeniaProductPage from './pages/VeniaProductPage/VeniaProductPage';
 
 const Layout = () =>{
   return (
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
     {
       path:"/product/:id",
       element:<Product/>
+    },
+    {
+      path:"/venia/:id",
+      element:<VeniaProductPage/>
     }
   ]
 }

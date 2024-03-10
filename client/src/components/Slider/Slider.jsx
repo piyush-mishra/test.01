@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import "./Slider.scss";
 import WestIcon from '@mui/icons-material/West';
 import EastIcon from '@mui/icons-material/East';
