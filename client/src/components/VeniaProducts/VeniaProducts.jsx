@@ -1,6 +1,7 @@
 import React from 'react'
 import { Product_List } from '../../queries/useProductListQuery'
 import { useQuery } from '@apollo/client';
+import { Link } from 'react-router-dom';
 
 function VeniaProducts() {
 
@@ -13,8 +14,8 @@ function VeniaProducts() {
 
   return (
     <div className='card'>
-        {data?.products?.items.map(({sku,url_key,name,small_image,price_range}) => (
-          <a href={url_key} key={sku}>
+      {data?.products?.items.map(({sku,url_key,name,small_image,price_range}) => (
+        <Link className='link' to={`/venia/${url_key}`}>
           <div className="image">
             <img src={small_image.url} />
           </div>
@@ -23,7 +24,7 @@ function VeniaProducts() {
           <h3 className="oldprice">${price_range.minimum_price.regular_price.value}</h3>
             <h3 className="newprice">${price_range.minimum_price.final_price.value}</h3>
           </div>
-        </a>
+        </Link>
           ))}
       </div>
   )

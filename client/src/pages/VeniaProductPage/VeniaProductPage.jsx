@@ -18,7 +18,7 @@ const VeniaProductPage = () => {
 
 
 const id = useParams().id;
-console.log(id);
+//console.log(id);
   
 const [mainimage,setMainImage] = useState(0);
 const [veniaimage,setVeniaImage] = useState("");
@@ -27,9 +27,9 @@ const [veniaimage,setVeniaImage] = useState("");
 
  const dispatch =  useDispatch();
 
- const handleAdd = () => {
-    console.log('Add');
-    dispatch(add({id:1,name:'Piyush'}))
+ const handleAdd = (product) => {
+    //console.log('Add');
+    dispatch(add(product))
     //Add Product in Cart.
     //Dispatch Action will be handled by reducer.
  }
@@ -41,7 +41,7 @@ const [veniaimage,setVeniaImage] = useState("");
    if (error) return <p>Error : {error.message}</p>;
 
 
-  console.log(data);
+  //console.log(data);
   
   const mainHeight = {height: '650px'};
 
@@ -66,7 +66,7 @@ const [veniaimage,setVeniaImage] = useState("");
           {quantity}
           <button onClick={()=> setQuantity(quantity => quantity+1)}>+</button>
         </div>
-        <div className="add" onClick={() => handleAdd()}>
+        <div className="add" onClick={() => handleAdd(data?.products?.items[0])}>
           <AddShoppingCartIcon/> ADD To CART
         </div>
         <div className="link">

@@ -4,6 +4,7 @@
     top:80px;
     z-index: 999;
     background-color: white;
+    max-width: 500px;
     padding: 20px;
     box-shadow: 0px 0px 7px -5-x rgba(0,0,0,0.5);
     -webkit-box-shadow:0px 0px 7px -5px rgba(0,0,0,0.5);
@@ -37,9 +38,14 @@
                 margin-bottom: 10px;
                 font-size: 14px;
             }
-
             .price{
                 color: blue;
+                display: flex;
+                gap: 10px;
+
+                .cartbutton{
+                    width:20px;
+                }
             }
         }
 

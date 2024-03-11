@@ -3,12 +3,15 @@ import React from 'react'
 import './Cart.scss';
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import { useDispatch, useSelector } from 'react-redux';
-import { remove } from '../redux/cart/cartSlice';
+import { add, remove ,decreaseCart} from '../redux/cart/cartSlice';
+import { useState } from 'react';
 
 function Cart() {
 
-     const item = useSelector((state)=> state.cart);
+     const items = useSelector((state)=> state.cart);
      const dispatch =  useDispatch();
+     console.log(items);
+     
 
     const CARDS_DATA = [
         {
@@ -32,9 +35,19 @@ function Cart() {
       }      
       ];
 
-      const deleteItem = () => {
-          dispatch(remove({id:1}))
+      const deleteItem = (item) => {
+          dispatch(remove(item))
+      };
+
+      const decreaseItem = (item) => {
+        dispatch(decreaseCart(item));
+      };
+
+      const addItem = (item)=>{
+        dispatch(add(item));
       }
+
+
   return (
     <div className='cart'>
       <h1>Product in your Cart</h1>
@@ -49,9 +62,26 @@ function Cart() {
              <DeleteOutlinedIcon className='delete' onClick={()=>deleteItem()}></DeleteOutlinedIcon>
             </div>
         ))}
+        {items?.cartItems?.map(item => (
+            <div className='item' data-sku={item.sku} key={item.sku}> 
+             <img src={item.thumbnail.url} alt="" />
+             <div className="details">
+                <h1>{item.name}</h1>
+                <p dangerouslySetInnerHTML={{__html:`${item.description.html}`}}></p>
+                <div className="price"> 
+                <button className='cartbutton' onClick={() => decreaseItem(item)}>-</button>
+                    <div>${item.cartQuantity}</div> 
+                <button className='cartbutton' onClick={()=>addItem(item)}>+</button>
+                X ${item.price_range.maximum_price.final_price.value}
+                     = ${item.price_range.maximum_price.final_price.value * item.cartQuantity}
+                </div>
+             </div>
+             <DeleteOutlinedIcon className='delete' onClick={()=>deleteItem(item)}></DeleteOutlinedIcon>
+            </div>
+        ))}
         <div className="total">
             <span>SUBTOTAL</span>
-            <span>$123</span>
+            <span>${items.cartTotalAmount}</span>
         </div>
         <button>PROCEED TO CHECKOUT</button>
         <span className="reset">
