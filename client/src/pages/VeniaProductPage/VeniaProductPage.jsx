@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import BalanceIcon from "@mui/icons-material/Balance";
-import {add} from '../../components/redux/cart/cartSlice';
-import {useDispatch} from 'react-redux'
+import {add,decreaseCart} from '../../components/redux/cart/cartSlice';
+import {useDispatch, useSelector} from 'react-redux'
 import { useQuery } from '@apollo/client';
 import { GET_PRODUCT_DETAIL_BY_URL } from '../../queries/useGetProductDetail';
 import { useParams } from 'react-router-dom';
@@ -20,11 +20,11 @@ const VeniaProductPage = () => {
 const id = useParams().id;
 //console.log(id);
   
-const [mainimage,setMainImage] = useState(0);
 const [veniaimage,setVeniaImage] = useState("");
 
- const [quantity,setQuantity] = useState(1);
 
+ const cartItem = useSelector(state => state.cart);
+ console.log(cartItem);
  const dispatch =  useDispatch();
 
  const handleAdd = (product) => {
@@ -34,6 +34,12 @@ const [veniaimage,setVeniaImage] = useState("");
     //Dispatch Action will be handled by reducer.
  }
 
+ const removeItem = (product)=>{
+  dispatch(decreaseCart(product));
+ }
+
+
+
  const { loading, error, data}  = useQuery(GET_PRODUCT_DETAIL_BY_URL,{
   variables : {'productName':id}
  });
@@ -42,6 +48,7 @@ const [veniaimage,setVeniaImage] = useState("");
 
 
   //console.log(data);
+
   
   const mainHeight = {height: '650px'};
 
@@ -50,11 +57,11 @@ const [veniaimage,setVeniaImage] = useState("");
     <div className="product">
       <div className="left">
         <div className="images">
-          <img src={data?.products?.items[0].media_gallery[0].url} alt=""  onClick={()=> setVeniaImage(`${data?.products?.items[0].media_gallery[0].url}`)}/>
-          <img src={data?.products?.items[0].media_gallery[1].url} alt=""  onClick={()=> setVeniaImage(`${data?.products?.items[0].media_gallery[1].url}`)}/>
+          <img loading="lazy" src={data?.products?.items[0].media_gallery[0].url} alt=""  onClick={()=> setVeniaImage(`${data?.products?.items[0].media_gallery[0].url}`)}/>
+          <img loading="lazy" src={data?.products?.items[0].media_gallery[1].url} alt=""  onClick={()=> setVeniaImage(`${data?.products?.items[0].media_gallery[1].url}`)}/>
         </div>
         <div className="mainimg">
-          {loading ? '' : <img src={veniaimage==='' ? data?.products?.items[0].media_gallery[0].url : veniaimage} data-source={veniaimage} alt="" style={mainHeight} />}
+          {loading ? '' : <img loading='lazy' src={veniaimage==='' ? data?.products?.items[0].media_gallery[0].url : veniaimage} data-source={veniaimage} alt="" style={mainHeight} />}
         </div>
       </div>
       <div className="right">
@@ -62,9 +69,14 @@ const [veniaimage,setVeniaImage] = useState("");
         <span className='price'>${data?.products?.items[0].price_range.minimum_price.final_price.value}</span>
         <p dangerouslySetInnerHTML={{__html:`${data?.products?.items[0].description.html}`}}/>
         <div className="quantity">
-          <button onClick={()=> setQuantity((prev) => (prev===1? 1 : prev-1))}>-</button>
-          {quantity}
-          <button onClick={()=> setQuantity(quantity => quantity+1)}>+</button>
+          <button onClick={()=> removeItem(data?.products?.items[0])}>-</button>
+          {
+          // console.log(data?.products?.items[0].sku)
+            cartItem.cartItems.filter(item => item.sku==data?.products?.items[0].sku).length ===1 ? cartItem.cartItems.filter(item => item.sku==data?.products?.items[0].sku)[0].cartQuantity:'0'
+            
+          }
+           
+          <button onClick={()=> handleAdd(data?.products?.items[0])}>+</button>
         </div>
         <div className="add" onClick={() => handleAdd(data?.products?.items[0])}>
           <AddShoppingCartIcon/> ADD To CART

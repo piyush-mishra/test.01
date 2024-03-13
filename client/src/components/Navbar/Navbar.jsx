@@ -62,7 +62,7 @@ const Navbar = () => {
                 <FavoriteOutlinedIcon/>
                 <div className="cartIcon" onClick={() => setOpen(!open)}>
                     <ShoppingCartOutlinedIcon />
-                    <span>{item.length}</span>
+                    <span>{item.cartTotalQuantity}</span>
                 </div>
         </div>
         </div>

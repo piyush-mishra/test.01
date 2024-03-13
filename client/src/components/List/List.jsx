@@ -8,9 +8,9 @@ const List = () => {
   const data = DUMMY_DATA;
   return (
     <div className='list'>
-        {data?.map((item) => 
+        {/* {data?.map((item) => 
             <Cards item={item} key={item.id}/>
-        )};
+        )}; */}
         <VeniaProducts/>
     </div>
   )

@@ -1,10 +1,8 @@
-import React from 'react'
-
+import React, { useEffect } from 'react'
 import './Cart.scss';
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import { useDispatch, useSelector } from 'react-redux';
-import { add, remove ,decreaseCart} from '../redux/cart/cartSlice';
-import { useState } from 'react';
+import { add, remove ,decreaseCart, getTotal} from '../redux/cart/cartSlice';
 
 function Cart() {
 
@@ -12,6 +10,9 @@ function Cart() {
      const dispatch =  useDispatch();
      console.log(items);
      
+     useEffect(()=>{
+        dispatch(getTotal());
+     },[items])
 
     const CARDS_DATA = [
         {
@@ -51,7 +52,7 @@ function Cart() {
   return (
     <div className='cart'>
       <h1>Product in your Cart</h1>
-        {CARDS_DATA?.map(item => (
+        {/* {CARDS_DATA?.map(item => (
             <div className='item' key={item.id}> 
              <img src={item.mainImg} alt="" />
              <div className="details">
@@ -61,7 +62,7 @@ function Cart() {
              </div>
              <DeleteOutlinedIcon className='delete' onClick={()=>deleteItem()}></DeleteOutlinedIcon>
             </div>
-        ))}
+        ))} */}
         {items?.cartItems?.map(item => (
             <div className='item' data-sku={item.sku} key={item.sku}> 
              <img src={item.thumbnail.url} alt="" />
@@ -70,7 +71,7 @@ function Cart() {
                 <p dangerouslySetInnerHTML={{__html:`${item.description.html}`}}></p>
                 <div className="price"> 
                 <button className='cartbutton' onClick={() => decreaseItem(item)}>-</button>
-                    <div>${item.cartQuantity}</div> 
+                    <div>{item.cartQuantity}</div> 
                 <button className='cartbutton' onClick={()=>addItem(item)}>+</button>
                 X ${item.price_range.maximum_price.final_price.value}
                      = ${item.price_range.maximum_price.final_price.value * item.cartQuantity}

@@ -7,9 +7,6 @@ const Category = () => {
   const catId = parseInt(useParams().id);
   const[maxPrice, setMaxPrice] = useState(1000);
   const[sort,setSort]=useState(null);
-  
-
-  console.log(sort)
   return (
     <>
        <div className="category">

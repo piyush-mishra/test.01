@@ -13,9 +13,10 @@ function VeniaProducts() {
 
 
   return (
-    <div className='card'>
-      {data?.products?.items.map(({sku,url_key,name,small_image,price_range}) => (
-        <Link className='link' to={`/venia/${url_key}`}>
+    <>
+    {data?.products?.items.map(({sku,url_key,name,small_image,price_range}) => (
+      <Link className='link' to={`/venia/${url_key}`}>
+          <div className='card' key={sku}>
           <div className="image">
             <img src={small_image.url} />
           </div>
@@ -23,10 +24,11 @@ function VeniaProducts() {
           <div className="prices">
           <h3 className="oldprice">${price_range.minimum_price.regular_price.value}</h3>
             <h3 className="newprice">${price_range.minimum_price.final_price.value}</h3>
+      </div>
           </div>
         </Link>
           ))}
-      </div>
+    </>
   )
 }
 
